@@ -21,7 +21,14 @@ const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      // Allow origins explicitly listed in CLIENT_URL
+      // Allow ANY Vercel preview branch domain
+      if (
+        !origin || 
+        allowedOrigins.includes(origin) || 
+        origin.endsWith('.vercel.app')
+      ) {
         callback(null, true);
       } else {
         callback(new Error(`CORS policy: ${origin} is not allowed`));
