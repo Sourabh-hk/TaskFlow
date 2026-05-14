@@ -9,7 +9,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log('✅ Database connection established successfully.');
 
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 TaskFlow API running on port ${PORT} [${process.env.NODE_ENV || 'development'}]`);
     });
 
