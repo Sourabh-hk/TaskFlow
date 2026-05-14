@@ -27,7 +27,7 @@ const startServer = async () => {
     process.on('SIGINT', () => shutdown('SIGINT'));
 
   } catch (error) {
-    console.error('❌ Unable to connect to database:', error.message);
+    console.error('❌ Unable to connect to database:', error);
     process.exit(1);
   }
 };
